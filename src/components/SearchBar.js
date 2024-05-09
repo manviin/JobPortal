@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import jobs from "../dummyData";
 import JobCard from "./JobCard";
 import React from "react";
   
     function SearchBar(){
 
-        
-        
-        const [filters, setFilters] = useState({
+        useEffect(() => {
+
+        } , []);
+    //using useState hook for managing job filters state//
+
+        const [filters, setFilters] = useState({  
             experience: "",
             company: "",
             numberOfEmployees: "",
@@ -16,37 +19,35 @@ import React from "react";
             role:"",
            
           });
+    //Event handler function for the filters state//
 
-          function handleChange (event)  {
-              const name = event.target.name;
-              const value= event.target.value;
+        function handleChange (event)  {    
+            const name = event.target.name;
+            const value= event.target.value;
             setFilters({ ...filters, [name]: value });
-          };
+        };
+    //mapping through the job list and applying filters as selected by the user//
+        const filteredJobs = jobs.filter(jobs => { 
+        const filterExp= jobs.experience >= filters.experience ||filters.experience==="";
+        const filtercompany = jobs.company===filters.company ||filters.company==="";
+        const filterLocation = jobs.location===filters.remote||filters.remote==="" 
+        const filterRole=  jobs.role=== filters.role|| filters.role==="";
+        const filterPay = jobs.minBasePay===filters.minSalary||filters.minSalary==="";
+        const filterEmpNo= jobs.EmpNO===filters.empNo||filters.empNo==="";
 
-        const filteredJobs = jobs.filter(jobs => {
-        const filterExp= jobs.experience >= filters.experience || filters.experience==="";
-        const filtercompany = jobs.company===filters.company||filters.company===""; 
-        const filterLocation = jobs.location===filters.remote || filters.remote===""; 
-        const filterRole=  jobs.role=== filters.role || filters.role===""; 
-        const filterPay = jobs.minBasePay===filters.minSalary ||filters.minSalary==="";
-        const filterEmpNo= jobs.EmpNO===filters.empNo || filters.empNo==="";
-
-        return !(filterExp&&filtercompany&&filterLocation&&filterRole&&filterPay&&filterEmpNo);
-          
-          
-            
-          });
+        return (filterExp&&filtercompany&&filterLocation&&filterRole&&filterPay&&filterEmpNo);
+        });
 
 
-
+    //Implementation for the filters options bar by using <select> tag//
       return <div> 
-       <div  className="flex gap-2 px-4 ml-5">
+        <div className="flex gap-2 px-4 ml-5">
             <select  name="role" onChange={handleChange} className=" text-gray-400 w-70 py-3 px-4 bg-transparent font-semibold border border-gray-500 rounded">
             <option value="" disabled hidden selected> Role </option>
             <option value="Frontend Developer"> Frontend Developer</option>
             <option value="Backend Developer"> Backend Developer</option>
             <option value="IOS Developer"> IOS Developer</option>
-            <option value="Data Engineer"> Flutter Developer </option>
+            <option value="Flutter Developer"> Flutter Developer </option>
             <option value="Android Developer">Android Developer</option>
             <option value="Dev-ops"> Dev-ops </option>
             <option value="React-Native">React-Native</option>
@@ -94,22 +95,12 @@ import React from "react";
             <option value="70L"> 70L </option>
         </select>
 
-        <input   name="company" value={filters.company} onChange={handleChange}className="text-gray-400 w-70 py-3 px-4 bg-transparent font-semibold border border-gray-500 rounded" placeholder="Search Company"></input>
-        </div>
-       
-        {filteredJobs.map((job) => (
+        <input name="company" value={filters.company} onChange={handleChange}className="text-gray-400 w-70 py-3 px-4 bg-transparent font-semibold border border-gray-500 rounded" placeholder="Search Company"></input>
+        </div>   
+        {filteredJobs.map((job) => ( 
           <JobCard key={job.id} job={job} />
         ))}
-      
-        
-
-          
-            </div>
-      
-      
-     
-}
-
-
-
-export default SearchBar;
+        </div>
+         //mapping through the filtered job list and calling the JobCard element//
+    }
+        export default SearchBar;

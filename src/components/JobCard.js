@@ -9,34 +9,30 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AspectRatio from '@mui/joy/AspectRatio';
 
-
-
-
-
-
 export default function JobCard({job}){
 
    return (
-      <Container maxWidth="lg">
-       <Grid container direction="row" justifyContent="center" alignItems="center"spacing={2} style={{marginTop:"20px"}}>
-          <Grid item xs={12} sm={4} ms={4}  key={job.id}>
-          <Card sx={{ minWidth: 320 , '&:hover': { cursor:"pointer"} }}>
+     <>
+        <Container maxWidth="lg">
+        <Grid container direction="row" alignItems="center" justifyContent="center"spacing={2}style={{marginTop:"20px"}}>
+        <Grid item xs={12}key={job.id}>
+        <Card key={job.id} sx={{ Width: 320, '&:hover': { cursor:"pointer"} }}>
          <CardContent>
          <Chip
           variant="outlined"
           size="sm"
           sx={{ pointerEvents: 'none' }}
-        >
+         >
          Posted 7 days ago
-        </Chip>
-        <CardContent sx={{ display: 'flex', pl:0, pr:0, alignItems: 'center' }}>
-        <AspectRatio ratio="1" sx={{ width: 90 }}>
-        <img
+         </Chip>
+         <CardContent sx={{ display: 'flex', pl:0, pr:0, alignItems: 'center' }}>
+         <AspectRatio ratio="1" sx={{ width: 90 }}>
+         <img
           src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90"
           srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
           alt=""
-        />
-      </AspectRatio>
+          />
+        </AspectRatio>
         <CardContent>
         <Typography variant="p" sx={{ fontSize: 18}} component="div">
          {job.company}
@@ -59,16 +55,19 @@ export default function JobCard({job}){
         <Typography variant="body2" sx={{ textAlign : 'left'}} >
         {job.jobDescription}
         </Typography>
-      </CardContent>
-      <CardActions>
-        <Button onClick="window.location.href={job.jdLink};" size="small">View Job</Button>
-       </CardActions>
-       </Card>
-       </Grid>
+        </CardContent>
+        <CardActions>
+        <Button size="small">View Job</Button>
+        </CardActions>
+        </Card>
+        </Grid>
+        </Grid>
+       </Container>
+       
+    </>
+    
       
-       </Grid>
-
-      </Container>
+       
 
    )
 }
