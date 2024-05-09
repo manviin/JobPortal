@@ -1,3 +1,5 @@
+The React Job Search Portal aims to provide users with an intuitive and efficient platform for finding relevant job opportunities. By leveraging React, React Hooks, and Tailwind CSS, along with a focus on user experience and functionality, the app will offer a seamless job search experience. The ability to run the app locally using npm start will facilitate smooth development and testing processes.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
