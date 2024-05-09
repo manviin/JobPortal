@@ -43,6 +43,9 @@ export default function JobCard({job}){
         <Typography variant="p" sx={{ fontSize: 15 , mb: 1.5 }}  component="div">
          {job.location} | Exp: {job.experience} years
         </Typography>
+        <Typography variant="p" sx={{ fontSize: 15 , mb:1.5}}  component="div">
+         {job.minBasePay} | {job.EmpNo}
+        </Typography>
         </CardContent>
         </CardContent>
         <Typography variant="h5" component="div">
