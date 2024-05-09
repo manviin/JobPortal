@@ -33,7 +33,7 @@ import React from "react";
         const filterLocation = jobs.location===filters.remote||filters.remote==="" 
         const filterRole=  jobs.role=== filters.role|| filters.role==="";
         const filterPay = jobs.minBasePay===filters.minSalary||filters.minSalary==="";
-        const filterEmpNo= jobs.EmpNO===filters.empNo||filters.empNo==="";
+        const filterEmpNo= jobs.EmpNo===filters.numberOfEmployees||filters.numberOfEmployees==="";
 
         return (filterExp&&filtercompany&&filterLocation&&filterRole&&filterPay&&filterEmpNo);
         });
