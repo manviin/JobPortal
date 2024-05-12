@@ -1,4 +1,3 @@
-import Container from "@mui/material/Container";
 import * as React from 'react';
 import Grid from "@mui/material/Grid";
 import Chip from '@mui/joy/Chip';
@@ -9,14 +8,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AspectRatio from '@mui/joy/AspectRatio';
 
+
+
+
+
 export default function JobCard({job}){
 
    return (
-     <>
-        <Container maxWidth="lg">
-        <Grid container direction="row" alignItems="center" justifyContent="center"spacing={2}style={{marginTop:"20px"}}>
-        <Grid item xs={12}key={job.id}>
-        <Card key={job.id} sx={{ Width: 320, '&:hover': { cursor:"pointer"} }}>
+      <div>
+      
+      <Card key={job.id} sx={{ maxWidth: 320, mx:2,my:2,'&:hover': { cursor:"pointer"} }}>
          <CardContent>
          <Chip
           variant="outlined"
@@ -63,14 +64,5 @@ export default function JobCard({job}){
         <Button size="small">View Job</Button>
         </CardActions>
         </Card>
-        </Grid>
-        </Grid>
-       </Container>
-       
-    </>
-    
-      
-       
-
-   )
-}
+      </div>
+ )}
