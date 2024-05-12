@@ -2,12 +2,13 @@ import { useState , useEffect} from "react";
 import jobs from "../dummyData";
 import JobCard from "./JobCard";
 import React from "react";
+
+
   
     function SearchBar(){
 
-        useEffect(() => {
-
-        } , []);
+     useEffect(()=>{
+        }, []);
     //using useState hook for managing job filters state//
 
         const [filters, setFilters] = useState({  
@@ -28,11 +29,11 @@ import React from "react";
         };
     //mapping through the job list and applying filters as selected by the user//
         const filteredJobs = jobs.filter(jobs => { 
-        const filterExp= jobs.experience >= filters.experience ||filters.experience==="";
-        const filtercompany = jobs.company===filters.company ||filters.company==="";
+        const filterExp= jobs.experience <= filters.experience ||filters.experience==="";
+        const filtercompany = jobs.company.toLowerCase()===filters.company.toLowerCase()||filters.company==="";
         const filterLocation = jobs.location===filters.remote||filters.remote==="" 
-        const filterRole=  jobs.role=== filters.role|| filters.role==="";
-        const filterPay = jobs.minBasePay===filters.minSalary||filters.minSalary==="";
+        const filterRole=  jobs.role===filters.role || filters.role==="";
+        const filterPay = jobs.minBasePay>=filters.minSalary||filters.minSalary==="";
         const filterEmpNo= jobs.EmpNo===filters.numberOfEmployees||filters.numberOfEmployees==="";
 
         return (filterExp&&filtercompany&&filterLocation&&filterRole&&filterPay&&filterEmpNo);
@@ -96,11 +97,15 @@ import React from "react";
         </select>
 
         <input name="company" value={filters.company} onChange={handleChange}className="text-gray-400 w-70 py-3 px-4 bg-transparent font-semibold border border-gray-500 rounded" placeholder="Search Company"></input>
-        </div>   
+        </div>  
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 ">
         {filteredJobs.map((job) => ( 
           <JobCard key={job.id} job={job} />
         ))}
         </div>
-         //mapping through the filtered job list and calling the JobCard element//
+       
+       </div>
     }
+    //mapping through the filtered job list and calling the JobCard element//
+
         export default SearchBar;
